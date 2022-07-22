@@ -1,0 +1,655 @@
+@import "./components";
+@import "./animations";
+@import "./colors";
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+  list-style-type: none;
+  text-transform: capitalize;
+}
+
+html {
+  font-size: 62.5%;
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
+body {
+  min-height: 100vh;
+  width: 100%;
+  font-family: "Nunito", sans-serif;
+}
+
+.header {
+  padding: 2rem 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  height: 100vh;
+  width: 100%;
+  background: linear-gradient(
+      308deg,
+      rgba(39, 29, 78, 0.8) 100%,
+      rgba(39, 29, 78, 0.8) 100%
+    ),
+    url("../images/coloring-pencils-large.jpg");
+  background-position: center;
+  background-size: cover;
+  overflow: hidden;
+
+  &__logo {
+    position: absolute;
+    top: 2.5rem;
+    left: 2rem;
+  }
+  &__logo-text {
+    font-size: 2.5rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    color: #fff;
+    span {
+      color: #f1bb51;
+    }
+  }
+
+  &__banner {
+    text-align: center;
+  }
+
+  &__heading {
+    font-family: "Kaushan Script", cursive;
+    font-size: 4.5rem;
+    color: #fff;
+    animation: moveToLeft 2s;
+  }
+  &__sub-title {
+    margin: 2rem 0 3rem 0;
+    font-size: 1.8rem;
+    color: #fff;
+    animation: moveToRight 2s;
+  }
+
+  &__social-media {
+    position: absolute;
+    left: 2rem;
+    bottom: 3rem;
+    z-index: 15;
+    i {
+      font-size: 3rem;
+      margin-right: 5.7rem;
+      color: #fff;
+      cursor: pointer;
+      transition:color .3s ease
+    }
+    i:last-child {
+      margin-right: 0;
+    }
+    i:hover{
+      color:$yellow
+    }
+  }
+
+  &__shape-img {
+    width: 100%;
+    height: 15rem;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    z-index: 10;
+  }
+}
+
+.nav {
+  &__cover {
+    position: fixed;
+    top: 2.5rem;
+    right: 2.2rem;
+    width: 4rem;
+    height: 4rem;
+    border-radius: 50%;
+    background-color: #311d4e;
+    opacity: 0.95;
+    transform: scale(1);
+    z-index: 16;
+    transition: transform 0.5s ease;
+  }
+  .active &__cover {
+    transform: scale(150);
+  }
+  &__nav-list {
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-flow: column;
+    height: 100vh;
+    width: 100%;
+    opacity: 0;
+    visibility: hidden;
+    z-index: 17;
+    transition: opacity 1s ease;
+  }
+  .active &__nav-list {
+    opacity: 1;
+    visibility: visible;
+  }
+  &__link {
+    margin: 1.5vh 0;
+    font-size: 2.2rem;
+    font-family: "Kaushan Script", cursive;
+    text-transform: uppercase;
+    letter-spacing: 0.4rem;
+    color: #fff;
+    transition: 0.3s ease;
+    &:hover {
+      letter-spacing: 0.8rem;
+    }
+  }
+
+  &__btn {
+    position: fixed;
+    top: 2rem;
+    right: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 4.5rem;
+    height: 4.5rem;
+    border-radius: 50%;
+    border: none;
+    outline: none;
+    background-color: #f1bb51;
+    z-index: 20;
+    cursor: pointer;
+    transition: background-color 0.5s ease;
+  }
+  .active &__btn {
+    background-color: #fff;
+  }
+  &__line {
+    width: 3rem;
+    height: 0.2rem;
+    margin: 0.2rem 0;
+    transform: right;
+    background-color: #fff;
+    transform-origin: right;
+    transition: all 0.5s ease;
+  }
+
+  .active &__line {
+    background-color: #f1bb51;
+  }
+
+  .active &__line--1 {
+    transform: rotate(-40deg) translateY(-0.5rem);
+  }
+  .active &__line--2 {
+    opacity: 0;
+  }
+  .active &__line--3 {
+    transform: rotate(40deg) translateY(0.5rem);
+  }
+}
+
+.about {
+  background-color: $main-color;
+  &__counter {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 2rem;
+    margin-bottom: 5rem;
+  }
+  &__box {
+    flex: 1 1 20rem;
+    background-color: $secondary-color;
+    text-align: center;
+    padding: 2rem;
+    border-radius: 0.5rem;
+  }
+  &__description {
+    font-size: 1.7rem;
+    color: #fff;
+    margin-bottom: 1.5rem;
+  }
+  &__ammount {
+    font-size: 3rem;
+    color: $yellow;
+  }
+
+  &__info-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 2rem;
+  }
+
+  &__img-box {
+    flex: 1 1 50rem;
+  }
+  &__img {
+    width: 100%;
+    border-radius: 0.5rem;
+  }
+  &__content {
+    flex: 1 1 50rem;
+    padding: 1rem;
+  }
+
+  &__heading {
+    font-size: 2.6rem;
+    color: #fff;
+  }
+  &__info {
+    font-size: 1.6rem;
+    margin: 3rem 0;
+    color: $white;
+  }
+  &__icons-box {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    width: 100%;
+    margin-bottom: 3rem;
+  }
+  &__icon-box {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    padding: 1rem;
+  }
+  &__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 5rem;
+    height: 5rem;
+    margin-bottom: 1.3rem;
+    background-color: $yellow;
+    border-radius: 50%;
+
+    i {
+      font-size: 2.5rem;
+      color: #fff;
+    }
+  }
+  &__icon-info {
+    font-size: 1.5rem;
+    color: $text-color;
+  }
+}
+
+.books {
+  &__cards-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 3rem;
+    flex-wrap: wrap;
+  }
+  &__card {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    flex: 1 1 30rem;
+    padding: 0.7rem 2rem;
+    border: 0.2rem solid $yellow;
+    border-radius: 0.5rem;
+  }
+  &__img {
+    width: 100%;
+    object-fit: cover;
+  }
+  &__title {
+    font-size: 1.6rem;
+    margin-top: 1rem;
+  }
+  &__price {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+  }
+  &__btn {
+    width: 75%;
+    padding: 1rem 2rem;
+    background-color: $yellow;
+    font-size: 1.6rem;
+    color: #fff;
+    border-radius: 0.5rem;
+    text-align: center;
+  }
+}
+
+.advantages {
+  background-color: $main-color;
+  &__cards-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 3rem;
+  }
+
+  &__card {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    flex: 1 1 25rem;
+    padding: 2rem;
+    color: #fff;
+    text-align: center;
+    border-radius: 0.5rem;
+    background-color: $secondary-color;
+    i {
+      font-size: 4rem;
+      color: $yellow;
+    }
+  }
+  &__heading {
+    font-size: 2.5rem;
+    margin: 2rem 0;
+  }
+  &__text {
+    font-size: 1.6rem;
+    margin-bottom: 2rem;
+  }
+  &__link {
+    align-self: flex-end;
+    font-size: 1.8rem;
+    color: $yellow;
+    text-decoration: underline;
+  }
+}
+
+.customers {
+  &__container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 2rem;
+  }
+
+  &__customer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    position: relative;
+    flex: 1 1 30rem;
+    padding: 6rem 2rem 2rem 2rem;
+    margin-top: 3.5rem;
+    text-align: center;
+    border-radius: 0.5rem;
+    background-color: $secondary-color;
+    color: $white;
+  }
+
+  &__img {
+    position: absolute;
+    left: 50%;
+    top: -3.5rem;
+    transform: translateX(-50%);
+    width: 7rem;
+    height: 7rem;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+
+  &__quote-icon {
+    position: absolute;
+    top: 1rem;
+    right: 2rem;
+    font-size: 5rem;
+    color:$yellow;
+  }
+
+  &__heading {
+    font-size: 2.5rem;
+  }
+
+  &__quote {
+    display: inline-block;
+    font-size: 1.6rem;
+    font-style: italic;
+    margin: 2rem 0;
+    padding: 0 3rem;
+    color: $text-color;
+  }
+
+  &__stars {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 100%;
+    max-width: 22rem;
+    i {
+      font-size: 2.2rem;
+      color: $yellow;
+    }
+  }
+}
+
+.contact {
+  position: relative;
+  background-color: $main-color;
+  color: #fff;
+  .contact__heading {
+    margin-top: 4rem;
+  }
+  &__vector {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 8rem;
+  }
+
+  &__container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 2rem;
+  }
+
+  &__boxes-container {
+    flex: 1 1 55rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 2rem;
+  }
+
+  &__box {
+    flex: 1 1 25rem;
+    padding: 2rem;
+    text-align: center;
+    border-radius: 0.5rem;
+    background-color: $secondary-color;
+    i {
+      font-size: 4.8rem;
+      color: $yellow;
+    }
+  }
+  &__name {
+    font-size: 2.8rem;
+    margin: 1rem 0;
+  }
+
+  &__direction {
+    font-size: 1.6rem;
+    font-style: italic;
+    color: $text-color;
+  }
+
+  &__form-container {
+    flex: 1 1 55rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 2rem;
+    padding: 2rem;
+    border-radius: 0.5rem;
+    background-color: $secondary-color;
+  }
+
+  &__text-input,
+  &__email-input,
+  &__textarea {
+    padding: 1rem;
+    width: 100%;
+    font-size: 1.6rem;
+    outline: none;
+    border-radius: 0.5rem;
+    border: none;
+  }
+
+  &__textarea {
+    min-height: 13.4rem;
+    max-height: 20rem;
+  }
+  &__btn {
+    width: 100%;
+    padding: 0.8rem 1.6rem;
+    font-size: 1.7rem;
+    color: $white;
+    background-color: $yellow;
+    border-radius: 0.5rem;
+    text-align: center;
+  }
+}
+
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 3rem 0.5rem;
+  text-align: center;
+  color: #fff;
+  background-color: #271d4e;
+
+  &__social-media {
+    display: flex;
+    justify-content: space-around;
+    gap: 2rem;
+    i {
+      font-size: 3.5rem;
+      color: $yellow;
+      cursor: pointer;
+    }
+  }
+
+  &__nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin: 3.5rem 0;
+  }
+  &__link {
+    font-size: 1.5rem;
+    color: $white;
+  }
+  &__copyright {
+    font-size: 1.5rem;
+    font-weight: 500;
+  }
+}
+
+@media (min-width: 768px) {
+  .header {
+    &__logo {
+      left: 3rem;
+    }
+    &__logo-text {
+      font-size: 3rem;
+    }
+    &__heading {
+      font-size: 10rem;
+    }
+    &__sub-title {
+      font-size: 2.4rem;
+    }
+    &__social-media {
+      left: 3rem;
+    }
+  }
+  .nav {
+    &__link {
+      font-size: 3rem;
+      margin: 2vh 0;
+    }
+    &__btn {
+      right: 3rem;
+      width: 5.5rem;
+      height: 5.5rem;
+    }
+    &__cover {
+      right: 3.2rem;
+    }
+  }
+
+  .footer {
+    padding: 5rem;
+
+    &__social-media {
+      font-size: 4rem;
+      gap: 4rem;
+    }
+    &__nav {
+      gap: 4rem;
+    }
+    &__link {
+      font-size: 1.7rem;
+    }
+    &__copyright {
+      font-size: 2rem;
+    }
+  }
+}
+
+@media (min-width: 992px) {
+  .books {
+    &__cards-container {
+      width: 80%;
+      margin: 0 auto;
+    }
+  }
+}
+
+@media (min-width: 1200px) {
+  .books {
+    &__cards-container {
+      gap: 7rem;
+    }
+  }
+  .advantages {
+    &__cards-container {
+      align-items: flex-start;
+      min-height: 70vh;
+      gap: 7rem;
+    }
+    &__card {
+      &:nth-child(even) {
+        align-self: flex-end;
+      }
+    }
+  }
+}
